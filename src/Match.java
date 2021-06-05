@@ -25,7 +25,7 @@ public class Match extends WholeMatch {
     }
 
     public void setPlayersInMatch() {
-        this.playersInMatch = getPlayersInWholeMatch();
+        this.playersInMatch = super.getPlayersInWholeMatch();
     }
 
     public void echoPlayersOfMatch(){

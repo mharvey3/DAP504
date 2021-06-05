@@ -1,11 +1,27 @@
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Utilities {
 
-    public ArrayList<String> getPlayersFromJson(){
+    public ArrayList<String> getPlayersFromJson() throws IOException {
+        String fileName = "players.json";
 
-        ArrayList<String> num1 = new ArrayList<String>();
-        return num1;
+        Gson gson = new Gson();
+        try (FileReader fileReader = new FileReader(fileName);
+             JsonReader jsonReader = new JsonReader(fileReader);
+             ) {
+            ReadJson[] data = gson.fromJson(jsonReader, ReadJson[].class);
+        }
+
+        ArrayList<String> playerList = new ArrayList<String>();
+        return playerList;
+
+
     }
 
 }
+

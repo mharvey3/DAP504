@@ -24,13 +24,17 @@ public abstract class WholeMatch {
         this.playersInWholeMatch = playersInWholeMatch;
     }
 
+    public int getNumberOfPlayersInWholeMatch() {
+        return numberOfPlayers;
+    }
+
     private ArrayList<Player> playersInWholeMatch;
     private ArrayList<Integer> playersScores;
 
-    public ArrayList<String> playersInMatch(){
-        ArrayList<String> util = new Utilities().getPlayersFromJson();
-        return util;
-    }
+//    public ArrayList<String> playersInMatch(){
+//        ArrayList<String> util = new Utilities();//.getPlayersFromJson();
+//        return util;
+//    }
 
     public int calcRounds(){
         int rounds = 0;
