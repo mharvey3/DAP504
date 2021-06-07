@@ -1,12 +1,5 @@
 public class ReadJson {
 
-    //Declare the properties
-    private int id;
-
-    private String first_name;
-
-    private String last_name;
-
     public int getId() {
         return id;
     }
@@ -30,6 +23,17 @@ public class ReadJson {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
+
+    //Declare the properties
+    private int id;
+
+    private String first_name;
+
+    private String last_name;
+
+    //public ReadJson()
+
+
 
 
 

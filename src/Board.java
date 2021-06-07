@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Board {
     private JComboBox DDPlayers;
@@ -15,7 +16,7 @@ public class Board {
     private JCheckBox ChkShowScores;
     private Integer[] listOfDrops;
 
-    public Board() {
+    public Board() throws IOException {
         JFrame frame = new JFrame("Board");
         frame.setContentPane(this.mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,13 +43,44 @@ public class Board {
                 BtnRun.setEnabled(false);
                 //timer.start();
                 Match match = new Match(convertData(DDPlayers));
-                match.calcRounds();
-                TxtResults.append("As there are " + DDPlayers.getSelectedItem().toString() + " players equaling " + match.numberOfRounds + " rounds");
-                if (ChkShowPlays.isSelected()){
-                    for (Player player : match.getPlayersInMatch()){
 
+
+                try {
+                    Utilities.setPlayers(match);
+                    match.setPlayersInMatch(Integer.parseInt(DDPlayers.getSelectedItem().toString()));
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+
+//                for (Player player : match.getPlayersInWholeMatch()){
+//                    System.out.println("Player: "+ player.firstName + " " + player.lastName + ", ID: " + player.id);
+//                }
+
+
+                match.calcRounds();
+                TxtResults.append("As there are " + DDPlayers.getSelectedItem().toString() + " players equaling " + match.numberOfRounds + " rounds\n");
+
+                //match
+
+                for (int i = 0; i < match.numberOfRounds; i++){
+
+                    //for ()
+                }
+
+
+                if (ChkShowPlays.isSelected()){
+                    TxtResults.append("Players in the Tournament \n");
+                    for (Player player : match.getPlayersInMatch()){
+                        TxtResults.append("ID: " + player.id + " " + player.firstName + " " + player.lastName + "\n");
                     }
                 }
+//                try {
+//                    Utilities.printPlayers();
+//                } catch (IOException ioException) {
+//                    ioException.printStackTrace();
+//                }
+                //TxtResults.append();
 
 //                try{
 //

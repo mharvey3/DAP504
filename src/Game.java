@@ -25,10 +25,18 @@ public class Game {
 
     public void runGame(){
         System.out.println("The player named " + playerOne.firstName + playerOne.lastName + " is up against " + playerTwo.firstName+ playerTwo.lastName + ".");
+        int winner = addWinnerANdLoser();
+        playerOne.setRoundsPlayed(playerOne.getRoundsPlayed()+1);
+        playerTwo.setRoundsPlayed(playerTwo.getRoundsPlayed()+1);
+        if (playerOne.id == winner){
+
+        }
+
     }
 
-    public void addWinnerANdLoser(){
+    public int addWinnerANdLoser(){
         int winnerPlayer = getWinnerOfGame().id;
+        return winnerPlayer;
     }
 
 
