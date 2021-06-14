@@ -13,7 +13,7 @@ public class Board {
     private JCheckBox ChkShowScores;
     private JButton BtnRunRound;
     private Integer[] listOfDrops;
-
+//Get File In
     public Board() throws IOException {
         JFrame frame = new JFrame("Board");
         frame.setContentPane(this.mainPanel);
