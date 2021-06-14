@@ -31,7 +31,7 @@ public class Utilities {
 //    }
 
     public static void setPlayers(Match match) throws IOException{
-        String fileName = "C:\\Users\\Inferno\\DAP504\\src\\players.json";
+        String fileName = "src/players.json";
 
         Gson gson = new Gson();
         try (FileReader fileReader = new FileReader(fileName);

@@ -1,7 +1,4 @@
-import com.sun.jdi.event.StepEvent;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,17 +11,23 @@ public class Board {
     private JPanel mainPanel;
     private JCheckBox ChkShowPlays;
     private JCheckBox ChkShowScores;
+    private JButton BtnRunRound;
     private Integer[] listOfDrops;
 
     public Board() throws IOException {
         JFrame frame = new JFrame("Board");
         frame.setContentPane(this.mainPanel);
+        JScrollPane scrollPane = new JScrollPane(TxtResults, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //TxtResults.setAutoscrolls(true);
+        frame.add(scrollPane);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //frame.add(DDPlayers);
         frame.pack();
         frame.setSize(600, 400);
         frame.setVisible(true);
+        BtnRunRound.setEnabled(false);
 
         Timer timer = new Timer(10000, new ActionListener() {
             @Override
@@ -88,7 +91,10 @@ public class Board {
 //
 //                }
                 //BtnRun.setEnabled(true);
+                BtnRunRound.setEnabled(true);
+
             }
+
         });
 
     }
