@@ -17,9 +17,9 @@ public class Board {
     public Board() throws IOException {
         JFrame frame = new JFrame("Board");
         frame.setContentPane(this.mainPanel);
-        JScrollPane scrollPane = new JScrollPane(TxtResults, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //JScrollPane scrollPane = new JScrollPane(TxtResults, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         //TxtResults.setAutoscrolls(true);
-        frame.add(scrollPane);
+        //frame.add(scrollPane);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
