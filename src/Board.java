@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,14 +13,21 @@ public class Board {
     private JCheckBox ChkShowPlays;
     private JCheckBox ChkShowScores;
     private JButton BtnRunRound;
+    private JScrollPane JScroll;
     private Integer[] listOfDrops;
 //Get File In
     public Board() throws IOException {
         JFrame frame = new JFrame("Board");
         frame.setContentPane(this.mainPanel);
-        //JScrollPane scrollPane = new JScrollPane(TxtResults, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+
+        //JScrollPane scoll = new JScrollPane(this.TxtResults, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        //frame.add(scoll);
+
+        //JScrollBar scrollPane = new JScrollBar(12,100,12,100,200);
         //TxtResults.setAutoscrolls(true);
-        //frame.add(scrollPane);
+        //TxtResults.add(scrollPane);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -78,6 +86,19 @@ public class Board {
                         TxtResults.append("ID: " + player.id + " " + player.firstName + " " + player.lastName + "\n");
                     }
                 }
+
+                boolean isSelect = false;
+                if (ChkShowScores.isSelected()){
+                    isSelect = true;
+                }
+
+                //if (ChkShowScores.isSelected()){
+                    //match.runMatch(frame);
+                //} else {
+                    match.runMatch(TxtResults, isSelect);
+                //}
+
+
 //                try {
 //                    Utilities.printPlayers();
 //                } catch (IOException ioException) {

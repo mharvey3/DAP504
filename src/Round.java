@@ -1,12 +1,23 @@
+import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 //Get File in
-public class Round {
+public class Round implements HandleableText {
 
-    public int roundNumber;
 
-    public ArrayList<Player[]> playersInRound;
+    public ArrayList<Player> playersInRound;
 
     public ArrayList<Player> winnersOfRound;
+
+    public JTextArea txtArea;
+
+    public Boolean isSelect;
+
+    public Round(ArrayList<Player> players, JTextArea txtArea, Boolean isSelect){
+        this.playersInRound = players;
+        this.txtArea = txtArea;
+        this.isSelect = isSelect;
+    }
 
 
     public void addToWinner(ArrayList<Player> winnersOfRound, Player player){
@@ -14,32 +25,29 @@ public class Round {
         this.winnersOfRound.add(player);
     }
 
-    public ArrayList<Player[]> setupPlayersArray(Match match){
-        for (int i = 0; i>= match.getPlayersInMatch().size(); i+=2) {
-            Player player1 = match.getPlayersInMatch().get(i);
-            Player player2 = match.getPlayersInMatch().get(i+1);
-            Player[] players = new Player[]{player1, player2};
-            this.playersInRound.add(players);
-        }
-        return this.playersInRound;
-    }
 
-    public void setupRound(int roundNumber, int numOfRounds, Match match){
-//        if (roundNumber != 1 and ){
-//
-//        }
-        for (int i = 0; i >= match.getPlayersInMatch().size(); i+=2){
-
-        }
-    }
-
-    public void startRound(ArrayList<Player[]> playersInRound){
+    public ArrayList<Player> runRound(ArrayList<Player[]> playersInRound){
+        Player winner;
+        ArrayList<Player> winnersOfRound = new ArrayList<>();
         for (Player[] players : playersInRound){
             for (int i = 0; i != players.length; i+=2){
                 Game game = new Game(players[i], players[i+1]);
-                game.runGame();
+                winner = game.runGame();
+                winnersOfRound.add(winner);
+                if (this.isSelect){
+                    showVals(txtArea, winner);
+                }
             }
         }
+        return winnersOfRound;
+    }
+
+    public void playersNotInRound(){
+
+    }
+
+    public void showVals(JTextArea txtArea, Player player){
+        txtArea.append("The winner of the game was " + player.firstName + " " + player.lastName + "\n");
     }
 
 }

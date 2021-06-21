@@ -14,6 +14,8 @@ public class Player {
         this.firstName = firstName;
         this.lastName = lastName;
         this.playerNum = playerNum;
+        this.setRoundsWon(0);
+        this.setRoundsPlayed(0);
     }
 
     public int getRoundsWon() {

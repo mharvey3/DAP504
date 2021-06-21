@@ -31,30 +31,38 @@ public class Game {
 
     public void pointWinner(){
         Random randNum = new Random();
-
         int winnerNum = randNum.nextInt(2);
 
         if (winnerNum == 1){
-            this.playerOneScore ++;
+            setPlayerOneScore(getPlayerOneScore() + 1);
+        } else if (winnerNum == 0){
+            setPlayerTwoScore(getPlayerTwoScore() + 1);
         } else{
-            this.playerTwoScore ++;
+            pointWinner();
         }
     }
 
-    public void runGame(){
+    public Player runGame() {
         boolean gameRunning = false;
-        System.out.println("The player named " + playerOne.firstName + playerOne.lastName + " is up against " + playerTwo.firstName+ playerTwo.lastName + ".");
+        System.out.println("The player named " + playerOne.firstName + " " + playerOne.lastName + " is up against " + playerTwo.firstName + " " + playerTwo.lastName + ".");
         //int winner = addWinnerANdLoser();
-        while (gameRunning = false){
+        Player winnerOfGame = null;
+        while (!gameRunning){
             if (this.playerOneScore >= 11 || this.playerTwoScore >= 11){
                 if (this.playerOneScore >= (this.playerTwoScore + 2)){
                     //Player 1 has one the Game
                     System.out.println(playerOne.firstName + " has won the game");
+
+                    winnerOfGame = playerOne;
                     gameRunning = true;
+
                 } else if(this.playerTwoScore >= (this.playerOneScore + 2)){
                     //Player 2 has one the game
                     System.out.println(playerTwo.firstName + " has won the game");
+                    winnerOfGame = playerTwo;
                     gameRunning = true;
+                } else {
+                    pointWinner();
                 }
             } else{
                 pointWinner();
@@ -62,13 +70,16 @@ public class Game {
         }
         playerOne.setRoundsPlayed(playerOne.getRoundsPlayed()+1);
         playerTwo.setRoundsPlayed(playerTwo.getRoundsPlayed()+1);
-//        if (playerOne.id == winner){
-//
-//        }
+        winnerOfGame.setRoundsWon(winnerOfGame.getRoundsWon() + 1);
 
+        Thread thread = new Thread();
+        try{
+            thread.sleep(10);
+        } catch (InterruptedException exception){
+            exception.getMessage();
+        }
+        return winnerOfGame;
     }
-
-    //public Player
 
     public int addWinnerANdLoser(){
         int winnerPlayer = getWinnerOfPoint().id;
